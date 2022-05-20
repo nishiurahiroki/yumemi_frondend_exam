@@ -1,9 +1,13 @@
 import Layout from "../components/layout"
+import PrefecturesCheckList from "../components/PrefecturesCheckList"
 
 export default function Index() {
   return (
     <div>
-      hoge!!!!
+      <PrefecturesCheckList
+        prefectures={[]}
+        onChange={() => {}}
+      />
     </div>
   )
 }
