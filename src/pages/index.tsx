@@ -1,11 +1,11 @@
 import Layout from "../components/layout"
-import PrefecturesCheckList from "../components/PrefecturesCheckList"
+import PrefCheckLists from "../components/PrefCheckLists"
 
 export default function Index() {
   return (
     <div>
-      <PrefecturesCheckList
-        prefectures={[]}
+      <PrefCheckLists
+        prefs={[]}
         onChange={() => {}}
       />
     </div>
