@@ -1,0 +1,32 @@
+{
+  "name": "yumemi_frondend_exam",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nishiurahiroki/yumemi_frondend_exam.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nishiurahiroki/yumemi_frondend_exam/issues"
+  },
+  "homepage": "https://github.com/nishiurahiroki/yumemi_frondend_exam#readme",
+  "dependencies": {
+    "next": "^12.1.6",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.35",
+    "@types/react": "^18.0.9",
+    "typescript": "^4.6.4"
+  }
+}
