@@ -12,7 +12,7 @@ const fetcher = (url : string) => fetch(url, {
 .then(res => res.json())
 
 export default function usePrefections() {
-  const { data, error, mutate } = useSWR(RESAS_API_HOST + '/' + RESAS_API_GET_PREFECTURES, fetcher)
+  const { data, error, mutate } = useSWR(RESAS_API_HOST + '/' + RESAS_API_GET_PREFECTURES, fetcher, { suspense: true })
 
   return {
     prefs : data?.result,

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 
 import PopulationGraph from '../components/PopulationGraph'
 
@@ -23,18 +23,15 @@ export default function Index() {
 
   return (
     <div>
-      {
-        prefs ? (
-          <PrefCheckLists
-            prefs={prefs}
-            onChange={onChangeCheckLists}
-          />
-        ) : <Loading/>
-      }
-
-      {
-        graphData ? <PopulationGraph data={graphData}/> : <Loading/>
-      }
+      <Suspense fallback={<Loading/>}>
+        <PrefCheckLists
+          prefs={prefs}
+          onChange={onChangeCheckLists}
+        />
+      </Suspense>
+      <Suspense fallback={<Loading/>}>
+        <PopulationGraph data={graphData}/>
+      </Suspense>
     </div>
   )
 }

@@ -44,7 +44,7 @@ function ramdonRGB() : number {
   return Math.round (Math.random () * 255) 
 }
 
-export default function PopulationGraph({data} : Props) {
+export default function PopulationGraph({data = []} : Props) {
   const [first] = data
   const datasets = data.map(p => ({
     label : p.prefName,
