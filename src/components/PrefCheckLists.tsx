@@ -12,14 +12,14 @@ export default function PrefCheckLists(props : Props) {
     checked : false
   })))
 
-  const onChange = (prefCode : string) => (e : any) => {
+  const onChange = ({prefCode, prefName}) => (e : any) => {
     const changed : any[] = checkedList.map(c => {
       if(c.prefCode !== prefCode) return c
-      return {prefCode, checked : e.target.checked}
+      return {prefCode, prefName , checked : e.target.checked}
     })
 
     setCheckedList(changed)
-    props.onChange(changed)
+    props.onChange(changed.filter(c => c.checked))
   }
 
   return (
@@ -30,7 +30,7 @@ export default function PrefCheckLists(props : Props) {
         const checked : boolean = checkedList.find(c => c.prefCode === prefCode)?.checked
         return (
           <span key={prefCode}>
-            <input onChange={onChange(prefCode)} type="checkbox" id={prefCode} checked={checked}/>
+            <input onChange={onChange({prefCode, prefName})} type="checkbox" id={prefCode} checked={checked}/>
             <label htmlFor={prefCode}>{prefName}</label>
           </span>
         )
