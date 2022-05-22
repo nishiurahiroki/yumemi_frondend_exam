@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,9 +8,8 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js'
-import { Line } from 'react-chartjs-2'
-
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
 
 ChartJS.register(
   CategoryScale,
@@ -19,8 +18,8 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
-)
+  Legend,
+);
 
 export const options = {
   responsive: true,
@@ -33,29 +32,28 @@ export const options = {
       text: 'Chart.js Line Chart',
     },
   },
-}
-
+};
 
 type Props = {
-  data : any[]
+  data: any[];
+};
+
+function ramdonRGB(): number {
+  return Math.round(Math.random() * 255);
 }
 
-function ramdonRGB() : number {
-  return Math.round (Math.random () * 255) 
-}
-
-export default function PopulationGraph({data = []} : Props) {
-  const [first] = data
-  const datasets = data.map(p => ({
-    label : p.prefName,
-    data : p.data.map(({value}) => value),
+export default function PopulationGraph({ data = [] }: Props) {
+  const [first] = data;
+  const datasets = data.map((p) => ({
+    label: p.prefName,
+    data: p.data.map(({ value }) => value),
     borderColor: `rgb(${ramdonRGB()},${ramdonRGB()},${ramdonRGB()})`,
     backgroundColor: `rgba(${ramdonRGB()},${ramdonRGB()},${ramdonRGB()},0.5)`,
-  }))
+  }));
 
   const d = {
-    labels : first?.data?.map(({year}) => year),
-    datasets
+    labels: first?.data?.map(({ year }) => year),
+    datasets,
   };
 
   return <Line options={options} data={d} />;

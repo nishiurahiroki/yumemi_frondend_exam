@@ -1,56 +1,49 @@
-import { useState, Suspense } from 'react'
+import { useState, Suspense } from 'react';
 
-import PopulationGraph from '../components/PopulationGraph'
+import Layout from '../components/layout';
 
-import Layout from "../components/layout"
-import PrefCheckLists from "../components/PrefCheckLists"
-import Loading from "../components/Loading"
+import PrefCheckLists from '../components/PrefCheckLists';
+import PopulationGraph from '../components/PopulationGraph';
+import Loading from '../components/Loading';
 
-import usePrefections from "../hooks/usePrefections"
-import usePerYear from '../hooks/usePerYear'
+import usePrefections from '../hooks/usePrefections';
+import usePerYear from '../hooks/usePerYear';
 
-import { getPrefections } from '../repositories/prefectures'
+import { getPrefections } from '../repositories/prefectures';
 
+export default function Index({ fallbackPrefs }) {
+  const [checkedPrefs, setCheckedPrefs] = useState<string[]>([]);
 
-export default function Index({fallbackPrefs}) {
-  const [checkedPrefs, setCheckedPrefs] = useState<string[]>([])
-
-  const {prefs} = usePrefections(fallbackPrefs)
-  const {perYears : graphData} = usePerYear({prefs : checkedPrefs})
+  const { prefs } = usePrefections(fallbackPrefs);
+  const { perYears: graphData } = usePerYear({ prefs: checkedPrefs });
 
   /** 都道府県チェックボックス押下時 **/
-  const onChangeCheckLists = checked => {
-    setCheckedPrefs(checked)
-  }
+  const onChangeCheckLists = (checked) => {
+    setCheckedPrefs(checked);
+  };
 
   return (
     <div>
-      <Suspense fallback={<Loading/>}>
-        <PrefCheckLists
-          prefs={prefs}
-          onChange={onChangeCheckLists}
-        />
+      <Suspense fallback={<Loading />}>
+        <PrefCheckLists prefs={prefs} onChange={onChangeCheckLists} />
       </Suspense>
-      <Suspense fallback={<Loading/>}>
-        <PopulationGraph data={graphData}/>
+      <Suspense fallback={<Loading />}>
+        <PopulationGraph data={graphData} />
       </Suspense>
     </div>
-  )
+  );
 }
 
 Index.getLayout = function getLayout(page) {
-  return (
-    <Layout title="トップ画面">{page}</Layout>
-  )
-}
-
+  return <Layout title='トップ画面'>{page}</Layout>;
+};
 
 export async function getStaticProps() {
-  const fallbackPrefs = await getPrefections()
+  const fallbackPrefs = await getPrefections();
 
   return {
-    props : {
-      fallbackPrefs
-    }
-  }
+    props: {
+      fallbackPrefs,
+    },
+  };
 }

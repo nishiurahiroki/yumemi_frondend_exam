@@ -1,19 +1,18 @@
-import { ReactElement } from 'react'
+import { ReactElement } from 'react';
 
-import Header from "./Header";
-
+import Header from './Header';
 
 type LayoutProps = Required<{
-  readonly children: ReactElement
+  readonly children: ReactElement;
 }> & {
-  title : string
-}
+  title: string;
+};
 
-export default function Layout({children, title} : LayoutProps) {
+export default function Layout({ children, title }: LayoutProps) {
   return (
     <>
-      <Header title={title}/>
+      <Header title={title} />
       <main>{children}</main>
     </>
-  )
+  );
 }

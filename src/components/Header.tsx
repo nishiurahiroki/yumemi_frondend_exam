@@ -1,16 +1,13 @@
-import styles from './Header.module.css'
-
+import styles from './Header.module.css';
 
 type Props = {
-  title : string
-}
+  title: string;
+};
 
-export default function Header(props : Props) {
+export default function Header(props: Props) {
   return (
     <header className={styles.header}>
-      <div className={styles.wrapper}>
-        {props.title}
-      </div>
+      <div className={styles.wrapper}>{props.title}</div>
     </header>
-  )
+  );
 }

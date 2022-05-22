@@ -1,15 +1,18 @@
-import useSWR from "swr"
+import useSWR from 'swr';
 
-import { getPrefections } from "../repositories/prefectures"
+import { getPrefections } from '../repositories/prefectures';
 
-const fetcher = () => getPrefections()
+const fetcher = () => getPrefections();
 
 export default function usePrefections(fallbackData) {
-  const { data, error, mutate } = useSWR('getPrefections', fetcher, { suspense: true, fallbackData })
+  const { data, error, mutate } = useSWR('getPrefections', fetcher, {
+    suspense: true,
+    fallbackData,
+  });
 
   return {
-    prefs : data?.result,
+    prefs: data?.result,
     error,
-    mutate
-  }
+    mutate,
+  };
 }

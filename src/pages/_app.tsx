@@ -1,21 +1,21 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
-function MyApp({Component, pageProps}) {
-  const getLayout = Component.getLayout || (page => page)
+function MyApp({ Component, pageProps }) {
+  const getLayout = Component.getLayout || ((page) => page);
 
   return (
     <>
       <Head>
-        <meta charSet="utf-8" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta charSet='utf-8' />
+        <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
         <meta
-          name="viewport"
-          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+          name='viewport'
+          content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'
         />
       </Head>
-      {getLayout(<Component {...pageProps}/>)}
+      {getLayout(<Component {...pageProps} />)}
     </>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;
