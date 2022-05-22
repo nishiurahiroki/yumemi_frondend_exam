@@ -9,11 +9,13 @@ import Loading from "../components/Loading"
 import usePrefections from "../hooks/usePrefections"
 import usePerYear from '../hooks/usePerYear'
 
+import { getPrefections } from '../repositories/prefectures'
 
-export default function Index() {
+
+export default function Index({fallbackPrefs}) {
   const [checkedPrefs, setCheckedPrefs] = useState<string[]>([])
 
-  const {prefs} = usePrefections()
+  const {prefs} = usePrefections(fallbackPrefs)
   const {perYears : graphData} = usePerYear({prefs : checkedPrefs})
 
   /** 都道府県チェックボックス押下時 **/
@@ -40,4 +42,15 @@ Index.getLayout = function getLayout(page) {
   return (
     <Layout title="トップ画面">{page}</Layout>
   )
+}
+
+
+export async function getStaticProps() {
+  const fallbackPrefs = await getPrefections()
+
+  return {
+    props : {
+      fallbackPrefs
+    }
+  }
 }

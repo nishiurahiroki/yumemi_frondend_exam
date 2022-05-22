@@ -11,8 +11,8 @@ const fetcher = (url : string) => fetch(url, {
 })
 .then(res => res.json())
 
-export default function usePrefections() {
-  const { data, error, mutate } = useSWR(RESAS_API_HOST + '/' + RESAS_API_GET_PREFECTURES, fetcher, { suspense: true })
+export default function usePrefections(fallbackData) {
+  const { data, error, mutate } = useSWR(RESAS_API_HOST + '/' + RESAS_API_GET_PREFECTURES, fetcher, { suspense: true, fallbackData })
 
   return {
     prefs : data?.result,
