@@ -1,25 +1,26 @@
 import { useState, Suspense } from 'react';
 
 import Layout from '../components/layout';
-
-import PrefCheckLists from '../components/PrefCheckLists';
-import PopulationGraph from '../components/PopulationGraph';
 import Loading from '../components/Loading';
 
 import usePrefections from '../hooks/usePrefections';
 import usePerYear from '../hooks/usePerYear';
 
+import PrefCheckLists from '../components/PrefCheckLists';
+import PopulationGraph from '../components/PopulationGraph';
+
 import { getPrefections } from '../repositories/prefectures';
 
+
 export default function Index({ fallbackPrefs }) {
-  const [checkedPrefs, setCheckedPrefs] = useState<string[]>([]);
+  const [checked, setChecked] = useState<string[]>([]);
 
   const { prefs } = usePrefections(fallbackPrefs);
-  const { perYears: graphData } = usePerYear({ prefs: checkedPrefs });
+  const { perYears: graphData } = usePerYear({ prefs: checked });
 
   /** 都道府県チェックボックス押下時 **/
   const onChangeCheckLists = (checked) => {
-    setCheckedPrefs(checked);
+    setChecked(checked);
   };
 
   return (
