@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+import Head from 'next/head';
 
 import Header from './Header';
 
@@ -11,7 +12,10 @@ type LayoutProps = Required<{
 export default function Layout({ children, title }: LayoutProps) {
   return (
     <>
-      <Header title={title} />
+      <Head>
+        <Header title={title} />
+        <title>{title}</title>
+      </Head>
       <main>{children}</main>
     </>
   );
