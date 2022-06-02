@@ -3,7 +3,6 @@ import { useState, Suspense } from 'react';
 import Layout from '../components/layout';
 import Loading from '../components/Loading';
 
-import usePrefections from '../hooks/usePrefections';
 import usePerYear from '../hooks/usePerYear';
 
 import PrefCheckLists from '../components/PrefCheckLists';
@@ -15,19 +14,16 @@ import { getPrefections } from '../repositories/prefectures';
 export default function Index({ fallbackPrefs }) {
   const [checked, setChecked] = useState<string[]>([]);
 
-  const { prefs } = usePrefections(fallbackPrefs);
   const { perYears: graphData } = usePerYear({ prefs: checked });
 
-  /** 都道府県チェックボックス押下時 **/
   const onChangeCheckLists = (checked) => {
     setChecked(checked);
   };
 
   return (
     <div>
-      <Suspense fallback={<Loading />}>
-        <PrefCheckLists prefs={prefs} onChange={onChangeCheckLists} />
-      </Suspense>
+      <PrefCheckLists prefs={fallbackPrefs} onChange={onChangeCheckLists} />
+
       <Suspense fallback={<Loading />}>
         <PopulationGraph data={graphData} />
       </Suspense>
@@ -40,11 +36,10 @@ Index.getLayout = function getLayout(page) {
 };
 
 export async function getStaticProps() {
-  const fallbackPrefs = await getPrefections();
-
+  const response = await getPrefections();
   return {
     props: {
-      fallbackPrefs,
+      fallbackPrefs : response.result,
     },
   };
 }
