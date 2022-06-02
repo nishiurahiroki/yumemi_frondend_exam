@@ -10,7 +10,7 @@ Rewrite `.env.local`
 NEXT_PUBLIC_RESAS_API_KEY=xxx
 ```
 
-run
+Run
 ```sh
 npm run dev
 ```
