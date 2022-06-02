@@ -4,11 +4,13 @@
 https://prefection-per-year.web.app/
 
 ## Dev
+Rewrite `.env.local`
 ```sh
-.env.local
 # Rewrite your RESAS_API_KEY.
 NEXT_PUBLIC_RESAS_API_KEY=xxx
+```
 
-
+run
+```sh
 npm run dev
 ```
